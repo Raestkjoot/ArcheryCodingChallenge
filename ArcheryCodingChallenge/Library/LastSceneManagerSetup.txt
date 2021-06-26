@@ -1,5 +1,0 @@
-sceneSetups:
-- path: D:/Projects/Unity Projects/UnityMovement/Assets/Scenes/2D Top-Down.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0

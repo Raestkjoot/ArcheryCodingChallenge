@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAiming : MonoBehaviour
-{
+public class PlayerAiming : MonoBehaviour {
     [SerializeField] private float rotationSpeed = 10f;
+    private float meshRotSpeedUp = 0.5f;
+
     // The gameobject containing the player's meshes (character, weapons, etc.)
     public Transform meshTransform;
     private Quaternion meshRotation;
-    private float meshRotSpeedUp = 0.5f;
 
     void Start() {
         meshRotation = meshTransform.rotation;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         //Rotate this object to face the mouse position
         float angle = AngleTowardsMouse(transform.position);
         transform.rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));

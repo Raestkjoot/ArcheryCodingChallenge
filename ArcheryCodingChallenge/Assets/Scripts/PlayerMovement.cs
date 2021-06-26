@@ -11,15 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 change;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         //The rigidbody is automatically added at initialization.
         myRigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         //Get the input
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");

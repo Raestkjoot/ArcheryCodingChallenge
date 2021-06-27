@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour {
-    //public Transform shootPoint;
+    [SerializeField] private float arrowVelocity = 15f;
     public GameObject arrowPrefab;
 
     // Update is called once per frame
@@ -13,8 +13,11 @@ public class PlayerShooting : MonoBehaviour {
         }
     }
 
-    //Spawns an arrow at this transformation
+    //Shoot an arrow from this object
     void Shoot() {
-        Instantiate(arrowPrefab, transform.position, transform.rotation);
+        //Spawn arrow and add velocity
+        GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
+        Rigidbody rb = arrow.GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * arrowVelocity, ForceMode.VelocityChange);
     }
 }

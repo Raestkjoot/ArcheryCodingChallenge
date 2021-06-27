@@ -28,12 +28,10 @@ public class PlayerAiming : MonoBehaviour {
     //Returns direct angle towards the mouse
     //Parameter: the position of the object that should point towards the mouse
     float AngleTowardsMouse(Vector3 pos){
-        Vector3 mousePos = Input.mousePosition;
         Vector3 objectPos = Camera.main.WorldToScreenPoint(pos);
-        mousePos.x -= objectPos.x;
-        mousePos.y -= objectPos.y;
+        Vector3 vectorToMouse = Input.mousePosition - objectPos;
         
-        float angle = Mathf.Atan2(mousePos.x, mousePos.y) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(vectorToMouse.x, vectorToMouse.y) * Mathf.Rad2Deg;
 
         return angle;
     }

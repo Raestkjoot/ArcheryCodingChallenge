@@ -10,6 +10,7 @@ public class PlayerAiming : MonoBehaviour {
     public Transform meshTransform;
     private Quaternion meshRotation;
 
+    // Use this for initialization
     void Start() {
         meshRotation = meshTransform.rotation;
     }
@@ -20,13 +21,14 @@ public class PlayerAiming : MonoBehaviour {
         float angle = AngleTowardsMouse(transform.position);
         transform.rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
 
-        //Rotate the character a little bit behind
+        //Rotate the character a little bit behind this object
         meshRotation = SlowlyRotateTowards(meshRotation);
         meshTransform.rotation = meshRotation;
     }
 
-    //Returns direct angle towards the mouse
-    //Parameter: the position of the object that should point towards the mouse
+    ///<summary> Finds the angle from the passed position to the mouse position. </summary>
+    ///<param name="pos"> A Vector3 position. </param>
+    ///<returns> The direct angle to the mouse. </returns>
     float AngleTowardsMouse(Vector3 pos){
         Vector3 objectPos = Camera.main.WorldToScreenPoint(pos);
         Vector3 vectorToMouse = Input.mousePosition - objectPos;
@@ -36,8 +38,12 @@ public class PlayerAiming : MonoBehaviour {
         return angle;
     }
 
-    //Returns angle slowly moving towards the mouse
-    //Parameter: the position of the object that should point towards the mouse
+    /// <summary> Used to rotate slowly rotate the object with 
+    /// the passed rotation towards this objects rotation.
+    /// </summary>
+    /// <param name="rot"> The target rotation. </param>
+    /// <returns> 
+    /// A rotation that rotates around the y axis towards this objects rotation. </returns>
     Quaternion SlowlyRotateTowards(Quaternion rot){
         float angleDist = Mathf.Abs(Mathf.Abs(meshRotation.y) - Mathf.Abs(transform.rotation.y));
         rot = Quaternion.Slerp(rot, transform.rotation, Time.deltaTime * rotationSpeed);

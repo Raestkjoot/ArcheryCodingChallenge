@@ -772,6 +772,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitParticles: {fileID: 4380103039264420742, guid: 9b4a847f9cdebb44793c0c40ef3affc6,
     type: 3}
+  cameraShake: {fileID: 0}
+  hitAudio: {fileID: 8300000, guid: 373d5665ad776d24d8910c6c754582da, type: 3}
 --- !u!54 &1420177762
 Rigidbody:
   m_ObjectHideFlags: 0

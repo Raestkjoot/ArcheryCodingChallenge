@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour {
     [SerializeField] private float arrowVelocity = 15f;
     public GameObject arrowPrefab;
+    public AudioClip shootAudio;
+    public AudioSource  audioSource;
 
     // Update is called once per frame
     void Update() {
@@ -13,11 +15,14 @@ public class PlayerShooting : MonoBehaviour {
         }
     }
 
-    //Shoot an arrow from this object
-    void Shoot() {
-        //Spawn arrow and add velocity
+    /// <summary> Shoot an arrow from this object </summary>
+    private void Shoot() {
+        // Spawn arrow and add velocity
         GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
         Rigidbody rb = arrow.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * arrowVelocity, ForceMode.VelocityChange);
+
+
+        audioSource.PlayOneShot(shootAudio);
     }
 }

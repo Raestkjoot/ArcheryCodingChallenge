@@ -926,7 +926,10 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+<<<<<<< HEAD
   - component: {fileID: 963194230}
+=======
+>>>>>>> 70aa77dcb16b8c93aaa18ed9c878ccb3635bfdec
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1011,6 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c75902599c589b4aae9ead5577542aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!82 &963194230
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1127,6 +1131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 200513724}
   hurtColor: {r: 0.9528302, g: 0.03146139, b: 0.03146139, a: 0}
+=======
+>>>>>>> 70aa77dcb16b8c93aaa18ed9c878ccb3635bfdec
 --- !u!1 &1080862202
 GameObject:
   m_ObjectHideFlags: 0

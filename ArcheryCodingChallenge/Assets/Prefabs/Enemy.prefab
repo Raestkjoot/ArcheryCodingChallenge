@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 2764476495860070753}
   - component: {fileID: 2764476495860070752}
   - component: {fileID: 2764476495860070767}
+  - component: {fileID: 601424528}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -141,3 +142,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &601424528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764476495860070766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf58037ad45ee34bb3f19f1b5696469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 2764476495552050996}
+  hurtColor: {r: 0.9528302, g: 0.03146139, b: 0.03146139, a: 0}
+  explosionAudio: {fileID: 8300000, guid: fa4b8ff8d31968d4aa114c53df5253e0, type: 3}
+  curHealth: 0
+  maxHealth: 100
+  goopSplatterPrefab: {fileID: 997669382321377009, guid: 9f544db5ddd19a546b6ed8c3c41aa753,
+    type: 3}
+  enemyDieParticlesPrefab: {fileID: 4380103039264420742, guid: dd9679a508809794d8dd769911a7cbf5,
+    type: 3}

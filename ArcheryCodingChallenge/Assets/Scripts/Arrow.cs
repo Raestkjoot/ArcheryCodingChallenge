@@ -31,7 +31,7 @@ public class Arrow : MonoBehaviour {
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.tag == "Enemy") {
-            StartCoroutine(EnemyHit(collision.gameObject));
+            EnemyHit(collision.gameObject);
         } else if(collision.gameObject.tag == "Border") {
             gameObject.GetComponent<Collider>().enabled = false;
             Destroy(gameObject.GetComponent<Rigidbody>());
@@ -43,31 +43,28 @@ public class Arrow : MonoBehaviour {
     /// <para> Arrow sticks in enemy, particles fly, camera shakes, audio plays, time slows.
     /// </summary>
     /// <param name="enemy" The enemy that was hit by this arrow </param>
-    private IEnumerator EnemyHit(GameObject enemy) {
+    private void EnemyHit(GameObject enemy) {
         // Arrow sticks to enemy
         gameObject.GetComponent<Collider>().enabled = false;
         Destroy(gameObject.GetComponent<Rigidbody>());
         transform.parent = enemy.transform;
 
-        audioSource.PlayOneShot(hitAudio);
+        AudioSource.PlayClipAtPoint(hitAudio, transform.position);
         GameObject effect = Instantiate(hitParticles, transform.position, Quaternion.identity);
         Destroy(effect, 2f);
 
-        enemy.GetComponent<Enemy>().TakeDamage();
 
 
         if(isMaxCharged == false) {
             StartCoroutine(cameraShake.Shake(cameraShakeDuration, normalCameraShakeMagnitude));
+            enemy.GetComponent<Enemy>().TakeDamage(15);
         } else {
             StartCoroutine(cameraShake.Shake(cameraShakeDuration, maxChargedCameraShakeMagnitude));
-            audioSource.PlayOneShot(criticalHitAudio);
+            enemy.GetComponent<Enemy>().TakeDamage(50);
+
+            AudioSource.PlayClipAtPoint(criticalHitAudio, transform.position);
             GameObject criticalEffect = Instantiate(criticalHitParticles, transform.position, Quaternion.identity);
             Destroy(criticalEffect, 2f);
         }
-
-        // Slow time for a split second
-        Time.timeScale = 0.5f;
-        yield return new WaitForSeconds(0.02f);
-        Time.timeScale = 1f;
     }
 }

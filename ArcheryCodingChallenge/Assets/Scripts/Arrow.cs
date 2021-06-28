@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour {
-    public GameObject HitParticles;
-    public CameraShake cameraShake;
+    private bool isMaxCharged = false;
+    public bool IsMaxCharged
+    {
+        set { isMaxCharged = value; }
+    }
+
+    public GameObject hitParticles;
+    public GameObject criticalHitParticles;
+    public AudioSource audioSource;
     public AudioClip hitAudio;
+    public AudioClip criticalHitAudio;
+    public AudioClip hitOtherAudio;
     public Color hurtColor;
 
-    private float cameraShakeDuration = .1f;
-    private float cameraShakeMagnitude = .35f;
+    private CameraShake cameraShake;
+    [SerializeField] private float cameraShakeDuration = .1f;
+    [SerializeField] private float normalCameraShakeMagnitude = .15f;
+    [SerializeField] private float maxChargedCameraShakeMagnitude = .5f;
 
     // Use this for initialization
     void Start() {
         cameraShake = Camera.main.gameObject.GetComponent<CameraShake>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
@@ -23,6 +35,7 @@ public class Arrow : MonoBehaviour {
         } else if(collision.gameObject.tag == "Border") {
             gameObject.GetComponent<Collider>().enabled = false;
             Destroy(gameObject.GetComponent<Rigidbody>());
+            audioSource.PlayOneShot(hitOtherAudio);
         }
     }
 
@@ -36,12 +49,21 @@ public class Arrow : MonoBehaviour {
         Destroy(gameObject.GetComponent<Rigidbody>());
         transform.parent = enemy.transform;
 
-        GameObject effect = Instantiate(HitParticles, transform.position, Quaternion.identity);
+        audioSource.PlayOneShot(hitAudio);
+        GameObject effect = Instantiate(hitParticles, transform.position, Quaternion.identity);
         Destroy(effect, 2f);
 
-        StartCoroutine(cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude));
-
         enemy.GetComponent<Enemy>().TakeDamage();
+
+
+        if(isMaxCharged == false) {
+            StartCoroutine(cameraShake.Shake(cameraShakeDuration, normalCameraShakeMagnitude));
+        } else {
+            StartCoroutine(cameraShake.Shake(cameraShakeDuration, maxChargedCameraShakeMagnitude));
+            audioSource.PlayOneShot(criticalHitAudio);
+            GameObject criticalEffect = Instantiate(criticalHitParticles, transform.position, Quaternion.identity);
+            Destroy(criticalEffect, 2f);
+        }
 
         // Slow time for a split second
         Time.timeScale = 0.5f;

@@ -6,13 +6,19 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10f;
+    private bool isChargingArrow = false;
+    public bool IsChargingArrow
+    {
+        set { isChargingArrow = value; }
+    }
+
+    [SerializeField] private float normalSpeed = 10f;
+    [SerializeField] private float chargingArrowSpeed = 5f;
     private Rigidbody myRigidbody;
     private Vector3 change;
 
     // Use this for initialization
     void Start() {
-        // The rigidbody is automatically added at initialization.
         myRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -31,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveCharacter()
     {
-        myRigidbody.MovePosition(transform.position + change.normalized * speed * Time.deltaTime);
+        if(isChargingArrow == false) {
+            myRigidbody.MovePosition(transform.position + change.normalized * normalSpeed * Time.deltaTime);
+        } else {
+            myRigidbody.MovePosition(transform.position + change.normalized * chargingArrowSpeed * Time.deltaTime);
+        }
     }
 }

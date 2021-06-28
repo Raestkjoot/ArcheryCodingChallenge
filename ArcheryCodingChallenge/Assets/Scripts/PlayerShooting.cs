@@ -105,7 +105,7 @@ public class PlayerShooting : MonoBehaviour {
         }
     }
 
-    /// <summary> Calculates the current values percentage between two values.
+    /// <summary> Calculates the current value's percentage between two values.
     /// <param name="cur"> The current value. </param>
     /// <param name="min"> The minimum value that cur can have (= 0%). </param>
     /// <param name="cur"> The maximum value that cur can have (= 100%). </param>

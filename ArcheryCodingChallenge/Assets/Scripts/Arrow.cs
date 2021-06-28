@@ -58,11 +58,9 @@ public class Arrow : MonoBehaviour {
 
         if(isMaxCharged == false) {
             cameraShake.Shake(cameraShakeDuration, normalCameraShakeMagnitude);
-            //StartCoroutine(cameraShake.Shake(cameraShakeDuration, normalCameraShakeMagnitude));
             enemy.GetComponent<Enemy>().TakeDamage(damage);
         } else {
             cameraShake.Shake(cameraShakeDuration, maxChargedCameraShakeMagnitude);
-            //StartCoroutine(cameraShake.Shake(cameraShakeDuration, maxChargedCameraShakeMagnitude));
             enemy.GetComponent<Enemy>().TakeDamage(critDamage);
 
             AudioSource.PlayClipAtPoint(criticalHitAudio, transform.position);

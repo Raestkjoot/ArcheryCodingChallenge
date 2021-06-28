@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary> Moves the character using the change variable. </summary>
     private void MoveCharacter()
     {
         if(isChargingArrow == false) {

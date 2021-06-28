@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     /// <summary> 
     /// This is what happens to the enemy when hurt.
-    /// Currently they only flash red, but we could implement damage and such.
+    /// Flash red and take damage. Die if health drops below 0.
     /// </summary>
     public void TakeDamage(int damage) {
         curHealth -= damage;

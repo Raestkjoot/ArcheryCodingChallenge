@@ -17,6 +17,9 @@ public class Arrow : MonoBehaviour {
     public AudioClip hitOtherAudio;
     public Color hurtColor;
 
+    [SerializeField] private int damage = 20;
+    [SerializeField] private int critDamage = 50;
+
     private CameraShake cameraShake;
     [SerializeField] private float cameraShakeDuration = .1f;
     [SerializeField] private float normalCameraShakeMagnitude = .15f;
@@ -53,14 +56,14 @@ public class Arrow : MonoBehaviour {
         GameObject effect = Instantiate(hitParticles, transform.position, Quaternion.identity);
         Destroy(effect, 2f);
 
-
-
         if(isMaxCharged == false) {
-            StartCoroutine(cameraShake.Shake(cameraShakeDuration, normalCameraShakeMagnitude));
-            enemy.GetComponent<Enemy>().TakeDamage(15);
+            cameraShake.Shake(cameraShakeDuration, normalCameraShakeMagnitude);
+            //StartCoroutine(cameraShake.Shake(cameraShakeDuration, normalCameraShakeMagnitude));
+            enemy.GetComponent<Enemy>().TakeDamage(damage);
         } else {
-            StartCoroutine(cameraShake.Shake(cameraShakeDuration, maxChargedCameraShakeMagnitude));
-            enemy.GetComponent<Enemy>().TakeDamage(50);
+            cameraShake.Shake(cameraShakeDuration, maxChargedCameraShakeMagnitude);
+            //StartCoroutine(cameraShake.Shake(cameraShakeDuration, maxChargedCameraShakeMagnitude));
+            enemy.GetComponent<Enemy>().TakeDamage(critDamage);
 
             AudioSource.PlayClipAtPoint(criticalHitAudio, transform.position);
             GameObject criticalEffect = Instantiate(criticalHitParticles, transform.position, Quaternion.identity);

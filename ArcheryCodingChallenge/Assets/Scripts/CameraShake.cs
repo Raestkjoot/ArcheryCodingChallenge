@@ -14,7 +14,17 @@ public class CameraShake : MonoBehaviour
     /// <summary> Shakes the camera. </summary>
     /// <param name="duration"> The duration of the shaking of the camera. </param>
     /// <param name="magnitude"> Magnitudes of the shaking. A higher value will move the camera further per "shake". </param>
-    public IEnumerator Shake (float duration, float magnitude) {
+    public void Shake (float duration, float magnitude) {
+        StartCoroutine(DoShake(duration, magnitude));
+    }
+
+    /// <summary> Shakes the camera. </summary>
+    /// <remark> If this function is called directly by the caller
+    /// it will stop shaking when the caller object is destroyed, which is why 
+    /// there is a seperate function that calls this one. </remark>
+    /// <param name="duration"> The duration of the shaking of the camera. </param>
+    /// <param name="magnitude"> Magnitudes of the shaking. A higher value will move the camera further per "shake". </param>
+    private IEnumerator DoShake (float duration, float magnitude) {
         float elapsed = 0.0f;
 
         while (elapsed < duration) {

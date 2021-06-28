@@ -780,6 +780,8 @@ MonoBehaviour:
   criticalHitAudio: {fileID: 8300000, guid: 640ba23056f3a644c9c91de49cc691e3, type: 3}
   hitOtherAudio: {fileID: 8300000, guid: 793825ccafad8734c83e42c88b564d9c, type: 3}
   hurtColor: {r: 0, g: 0, b: 0, a: 0}
+  damage: 20
+  critDamage: 50
   cameraShakeDuration: 0.1
   normalCameraShakeMagnitude: 0.15
   maxChargedCameraShakeMagnitude: 0.5

@@ -8876,8 +8876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8284bf1a678fea45921b9bc4ddc770a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 20
-  chargingArrowSpeed: 8
+  normalSpeed: 10
+  chargingArrowSpeed: 5
 --- !u!65 &1879520022
 BoxCollider:
   m_ObjectHideFlags: 0

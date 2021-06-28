@@ -3,3 +3,6 @@ A short coding challenge. The objective is to make a basic game where the player
 
 Code: https://github.com/Raestkjoot/ArcheryCodingChallenge/tree/main/ArcheryCodingChallenge/Assets/Scripts
 
+# Game Page
+Windows & Web:
+https://gamejolt.com/games/archeryCodeCh/628090

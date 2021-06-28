@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         // Get the input
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
@@ -38,9 +38,9 @@ public class PlayerMovement : MonoBehaviour
     private void MoveCharacter()
     {
         if(isChargingArrow == false) {
-            myRigidbody.MovePosition(transform.position + change.normalized * normalSpeed * Time.deltaTime);
+            myRigidbody.MovePosition(transform.position + change.normalized * normalSpeed * Time.fixedDeltaTime);
         } else {
-            myRigidbody.MovePosition(transform.position + change.normalized * chargingArrowSpeed * Time.deltaTime);
+            myRigidbody.MovePosition(transform.position + change.normalized * chargingArrowSpeed * Time.fixedDeltaTime);
         }
     }
 }
